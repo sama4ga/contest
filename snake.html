@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snake</title>
+  <style>
+    #canvas{
+      border: 10px solid grey;
+      display: flex;
+      justify-content: center;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="450" height="450">Your browser does not support the canvas element</canvas>
+  <div>
+    <button id="restart">Restart</button>
+    <button id="pause">Pause</button>
+    <button id="resume">Resume</button>
+  </div>
+  <script src="../Bootstrap/bootstrap-4.6.0-dist/js/jquery-3.51.min.js"></script>
+  <script>
+    var canvas = $("#canvas")[0];
+    var ctx = canvas.getContext("2d");
+    var w,h,cw,snake,food,level,score,d,gameLoop,speed;
+
+    cw = 10;
+    w = $("#canvas").width();
+    h = $("#canvas").height();
+
+    init();
+
+    function init(){
+      level = 1;
+      score = 0;
+      speed = 100;
+      d = "right";
+      ctx.font = "10px serif";
+      createFood();
+      createSnake();
+      $("#restart").show();
+      $("#pause").show();
+      $("#resume").hide();
+
+      if (typeof gameLoop != "undefined") clearInterval(gameLoop);
+      gameLoop = setInterval(paint, speed);
+    }
+
+    function createFood() {
+      food = {
+        x: Math.round(Math.random()*(w-cw)/cw),
+        y: Math.round(Math.random()*(h-cw)/cw)
+      }
+    }
+
+    function createSnake() {
+      snake = [];
+      let snakeLength = 5;
+      for (let i = snakeLength; i >= 0; i--) {
+        snake.push({x:i,y:0});
+      }
+    }
+
+    function paint() {
+      // paint the cell      
+      let grd = ctx.createLinearGradient(0,0,w,h);
+      grd.addColorStop(0,"#00ff00");
+      grd.addColorStop(0.5,"yellow");
+      grd.addColorStop(1,"brown");
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, w, h);
+      ctx.strokeStyle = "black";
+      ctx.fillRect(0, 0, w, h);
+
+
+      //paint level and score text
+      paintText("Score " + score,(w-100)/cw,(h-10)/cw,"white");
+      paintText("Level " + level,(w-50)/cw,(h-10)/cw,"white");
+
+      //move the snake
+      let nx = snake[0].x, ny = snake[0].y;
+
+      if (d == "right") nx++;
+      if (d == "left") nx--;
+      if (d == "down") ny++;
+      if (d == "up") ny--;
+
+      //check for borders and collision
+      if (nx == -1 || nx == w/cw || ny == -1 || ny == h/cw || checkCollision(nx, ny, snake)) {
+        paintText("Game over",18,h/(cw*2),"red","segoe script","20px");
+        endGame();
+        return;
+      }
+
+      let tail;
+      //make snake eat food
+      if (nx == food.x && ny == food.y) {
+        tail = {x:nx, y:ny}; 
+        score++;
+        createFood();
+      }else{
+        tail = snake.pop();
+        tail.x = nx; tail.y = ny;
+      }
+
+      snake.unshift(tail);
+
+      //paint the snake
+      for (let i = 0; i < snake.length; i++) {
+        paintCell(snake[i].x, snake[i].y, "green");               
+      }
+
+      //paint the food
+      paintCell(food.x, food.y, "red");
+
+    }
+    
+    function paintCell(x,y,color) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x*cw, y*cw, cw, cw);
+      ctx.strokeStyle = "white";
+      ctx.fillRect(x*cw, y*cw, cw, cw);
+    }
+
+    function paintText(text,x,y,color="black",fontStyle="serif",fontSize="10px") {
+      ctx.font = fontSize + " " + fontStyle;
+      ctx.fillStyle = color;
+      //let textWidth = ctx.measureText(text).width;
+      ctx.fillText(text,x*cw, y*cw);
+    }
+
+    function checkCollision(x,y,snake) {
+      for (let i = 0; i < snake.length; i++) {
+        if(snake[i].x == x && snake[i].y == y) return true;        
+      }
+      return false;
+    }
+
+    $(document).on("keydown",function(e) {
+      let keyCode = e.code;
+      //let keyNum = e.which;
+      if ((keyCode == "ArrowDown" || keyCode == "Numpad2") && d != "up") {
+        d = "down";
+      }else if ((keyCode == "ArrowUp" || keyCode == "Numpad8") && d != "down") {
+        d = "up";
+      }else if ((keyCode == "ArrowRight" || keyCode == "Numpad6") && d != "left") {
+        d = "right";
+      }else if ((keyCode == "ArrowLeft" || keyCode == "Numpad4") && d != "right") {
+        d = "left";
+      }
+    })
+
+    function pauseGame() {
+      if (typeof gameLoop != "undefined") clearInterval(gameLoop);
+      $("#restart").show();
+      $("#pause").hide();
+      $("#resume").show();
+    }
+
+    function resumeGame() {
+      gameLoop = setInterval(paint, speed);
+      $("#pause").show();
+      $("#resume").hide();
+    }
+
+    function endGame() {
+      pauseGame();
+      $("#resume").hide();
+    }   
+    
+    function restartGame() {
+      init();
+    }
+
+    $("#pause").click(pauseGame);
+    $("#restart").click(restartGame);
+    $("#resume").click(resumeGame);
+    
+    /*
+adjCells = getFreeCellsForMovement(cellId);
+      adjCells.forEach(function(value,index) {
+        dir = direction[index]; // get the direction of current search
+        if (value != undefined) {
+          cell = "#tile"+value;
+
+          //check if cell is free first
+          if (isCellFree(value)) {
+            markCellForMovement(cell);
+            // enable movement
+            $(cell).on("click",function() {
+              moveBtn(btn,this);
+              removeMarkForMovementAll();
+              moved =  true;
+              switchPlayer();
+              return;
+            });
+          }else{
+            if (isCellEnemy(value)) {
+              enemyFound = true;
+              let jumps = [];
+              let result;
+
+              // first check the next cell for freedom and then start looping
+              let adjCell = getCell(dir,value);
+              if (isCellFree(adjCell)) {
+                let cell = "#tile"+adjCell;
+                markCellForMovement(cell);
+              }
+              while (enemyFound) {
+                result = getJumps(adjCell,dir);
+                if ( result.length == 0){
+                   enemyFound = false;
+                }else{
+                  jumps.push(result);
+                  adjCells = result.cell;
+                }
+              }
+              console.log(jumps);
+            }
+          }
+          
+        }
+      });      
+    });
+    */
+
+  </script>
+</body>
+</html>

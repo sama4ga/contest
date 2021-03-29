@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tables</title>
+    <link rel="stylesheet" href="../Bootstrap/bootstrap-4.6.0-dist/css/bootstrap.min.css" type="text/css" media="all" />
+    
+    <style type="text/css" media="all">
+      #table1 td, th{
+        border-bottom: 1px solid black;
+      }
+      #table1 th{
+        text-align: left;
+      }
+      #table1 tr:nth-child(odd){
+        background-color: green;
+      }
+      #table1 tr:nth-child(even){
+        background-color: blue;
+      }
+      #table1 tr:hover{
+        background-color: red;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <table id="table1">
+      <caption>Names of employees</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Maurice</td>
+          <td>"mauriceoscar58@gmail.com"</td>
+        </tr>
+        <tr>
+          <td>Oscar</td>
+          <td>oscarjohnson22@gmail.com</td>
+        </tr>
+        <tr>
+          <td colspan="2">This spans two columns</td>
+        </tr>
+        
+        <tr>
+          <td rowspan="2">This cell spans two rows</td>
+          <td>afiakinye@gmail.com</td>
+        </tr>
+        <tr>
+          <td>oscarmauriceoscar58@gmail.com</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <table class="table table-hover">
+      <caption>Names of employees</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Maurice</td>
+          <td>mauriceoscar58@gmail.com</td>
+        </tr>
+        <tr>
+          <td>Oscar</td>
+          <td>oscarjohnson22@gmail.com</td>
+        </tr>
+        <tr>
+          <td colspan="2">This spans two columns</td>
+        </tr>
+        
+        <tr>
+          <td rowspan="2">This cell spans two rows</td>
+          <td>afiakinye@gmail.com</td>
+        </tr>
+        <tr>
+          <td>oscarmauriceoscar58@gmail.com</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <a href="#" id="xx">Download table</a>
+    
+    <script src="../Bootstrap/bootstrap-4.6.0-dist/js/jquery-3.51.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+  function exportTableToCSV($table, filename) {
+  
+      var $rows = $table.find('tr:has(td),tr:has(th)'),
+  
+          // Temporary delimiter characters unlikely to be typed by keyboard
+          // This is to avoid accidentally splitting the actual contents
+          tmpColDelim = String.fromCharCode(11), // vertical tab character
+          tmpRowDelim = String.fromCharCode(0), // null character
+  
+          // actual delimiter characters for CSV format
+          colDelim = '","',
+          rowDelim = '"\r\n"',
+  
+          // Grab text from table into CSV formatted string
+          csv = '"' + $rows.map(function (i, row) {
+              var $row = $(row), $cols = $row.find('td,th');
+  
+              return $cols.map(function (j, col) {
+                  var $col = $(col), text = $col.text();
+  
+                  return text.replace(/"/g, '""'); // escape double quotes
+  
+              }).get().join(tmpColDelim);
+  
+          }).get().join(tmpRowDelim)
+              .split(tmpRowDelim).join(rowDelim)
+              .split(tmpColDelim).join(colDelim) + '"',
+  
+  
+  
+          // Data URI
+          csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+  
+          //console.log(csv);
+  
+          if (window.navigator.msSaveBlob) { // IE 10+
+              //alert('IE' + csv);
+              window.navigator.msSaveOrOpenBlob(new Blob([csv], {type: "text/plain;charset=utf-8;"}), filename)
+          } 
+          else {
+              $(this).attr({ 'download': filename, 'href': csvData, 'target': '_blank' }); 
+          }
+  }
+  
+  // This must be a hyperlink
+  $("#xx").on('click', function (event) {
+  
+      exportTableToCSV.apply(this, [$('#table1'), 'export.csv']);
+  
+      // IF CSV, don't do event.preventDefault() or return false
+      // We actually need this to be a typical hyperlink
+  });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe Game</title>
+  <style>
+    table{
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      border-collapse: collapse;
+      margin: 20px auto;
+    }
+    td{
+      cursor: pointer;
+      font-size: 2.5em;
+      font-family: 'Courier New', Courier, monospace;
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+    td.o-mark::after{
+      content: "o";
+      color: rosybrown;
+    }
+    td.x-mark::after{
+      content: "x";
+      color: royalblue;
+    }
+  </style>
+</head>
+<body>
+  <div class="turn"></div>
+  <div class="message"></div>
+  <table>
+    <tr>
+      <td id="tile-1"></td>
+      <td id="tile-2"></td>
+      <td id="tile-3"></td>
+    </tr>
+    <tr>
+      <td id="tile-4"></td>
+      <td id="tile-5"></td>
+      <td id="tile-6"></td>
+    </tr>
+    <tr>
+      <td id="tile-7"></td>
+      <td id="tile-8"></td>
+      <td id="tile-9"></td>
+    </tr>
+  </table>
+  <button id="reset">Reset</button>
+  
+  <script src="../../bootstrap/bootstrap-4.6.0-dist/js/jquery-3.51.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var player,checked,turn,message,playerMark;
+
+      function init() {
+        turn = $(".turn");
+        message = $(".message");
+        checked = false;
+        let p = Math.round(Math.random()*2);// randomly determine player
+        player = p == 0 ? 1 : p; // To prevent player 0
+        playerMark = getPlayerMark(player);
+        turn.text("Player " + player + " starts");        
+      }
+      init();
+
+      $("td").click(function() {
+        checked = getCheckState(this);
+        if (!checked) {
+          $(this).addClass("marked " +playerMark);
+          checkWon(player,playerMark)?$("td").off("click"):"";    
+          player = getPlayer();
+          playerMark = getPlayerMark(player);
+        }
+      })
+
+      function computer() {
+        turn.text("Computer turn");
+        let uncheckedTiles = $("td:not(.marked)");
+        uncheckedTiles[Math.round(Math.random()*uncheckedTiles.length)].addClass("marked x-mark")
+      }
+      
+      function getPlayer() {
+        let cPlayer;
+        if (player == 1) {
+          cPlayer = 2;
+        }else{
+          cPlayer = 1;
+        }
+        turn.text("Player " + player + " turn");
+        return cPlayer;
+      }
+
+      function getCheckState(td) {
+        if ($(td).hasClass("marked")) {
+          message.text("You cannot choose this cell");
+          return true;
+        }
+        return false;
+      }
+
+      function getPlayerMark(player) {
+        if (player == 1) {
+          return "o-mark";
+        }
+        return "x-mark";
+      }
+
+      function reset() {
+        message.text("");
+        turn.text("");
+        $("td").each(function() {
+          $(this).removeClass("marked x-mark o-mark");
+        });
+        init();
+      } 
+
+      function checkWon(player,playerMark) {
+        let finished = false;
+        if ($("#tile-1").hasClass(playerMark) && $("#tile-2").hasClass(playerMark) && $("#tile-3").hasClass(playerMark)) {
+          message.text("Player " + player + " won");
+          finished = true;
+        }else if ($("#tile-1").hasClass(playerMark) && $("#tile-4").hasClass(playerMark) && $("#tile-7").hasClass(playerMark)) {
+          message.text("Player " + player + " won");
+          finished = true;
+        }else if ($("#tile-1").hasClass(playerMark) && $("#tile-5").hasClass(playerMark) && $("#tile-9").hasClass(playerMark)) {
+          message.text("Player " + player + " won");
+          finished = true;
+        }else if ($("#tile-2").hasClass(playerMark) && $("#tile-5").hasClass(playerMark) && $("#tile-8").hasClass(playerMark)) {
+          message.text("Player " + player + " won");
+          finished = true;
+        }else if ($("#tile-3").hasClass(playerMark) && $("#tile-6").hasClass(playerMark) && $("#tile-9").hasClass(playerMark)) {
+          message.text("Player " + player + " won");
+          finished = true;
+        }else if ($("#tile-3").hasClass(playerMark) && $("#tile-5").hasClass(playerMark) && $("#tile-7").hasClass(playerMark)) {
+          message.text("Player " + player + " won");
+          finished = true;
+        }
+        return finished;
+      }
+      
+      $("#reset").click(reset);
+    });
+  </script>
+</body>
+</html>

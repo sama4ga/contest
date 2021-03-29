@@ -1,0 +1,209 @@
+*{
+  box-sizing: border-box;
+}
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(209, 250, 209);
+}
+ul,ol{
+  list-style-position: inside;
+}
+.divsuccess{
+  background-color: green!important;
+  color: white!important;
+}
+.divsuccess-inverse{
+  background-color: white;
+  color: green;
+}
+a{
+  text-decoration: none;
+}
+
+a:link{
+  color: black;
+}
+a:hover{
+  color: black;
+}
+a:active{
+  color: black;
+}
+a:visited{
+  color: black;
+}
+a.btn{
+  color: #ffffff !important;
+}
+.navbar-brand{
+  color: white !important;
+}
+.nav-link{
+  color: white !important;
+  padding: 10px;
+}
+.nav-link:hover{
+  background-color: rgb(9, 77, 20) !important;
+}
+#clockdiv{
+  color: #fff;
+  display: block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+  font-family: sans-serif;
+}
+#clockdiv > div {
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #106d0c;
+  display: inline-block;
+}
+#clockdiv div > span {
+  padding: 15px;
+  border-radius: 3px;
+  background-color: #083a06;
+  display: inline-block;
+}
+.smalltext{
+  padding-top: 5px;
+  font-size: 16px;
+}
+.circle{
+  border-radius: 50%;  
+  box-shadow: 0 3px 10px rgb(71, 70, 70);
+}
+.center{
+  margin-left: auto;
+  margin-right: auto;
+}
+.vcenter{
+  margin-top: 50%;
+}
+.border{  
+  box-shadow: 3px 3px 10px rgba(141, 139, 139, 0.1);
+  min-width:200px;
+  max-width:500px;
+  padding:20px;
+  margin:30px auto;
+  background-color: white;
+}
+.ease-in{
+  transition-timing-function: ease-in;
+}
+footer{
+  background-color: #08311e;
+  padding: 20px;
+  color: #ffffff;
+  bottom: 0;
+}
+.error,.success,.warning,.info,.validation{
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  border-left: 5px solid;
+}
+.error{
+  background-color: #fca4a4;
+  color: #D8000C;
+}
+.success{
+  background-color:#c7e78e;
+  color: #4F8A10;
+}
+.warning{
+  background-color: #f7e59e;
+  color: #9f6000;
+}
+.info{
+  background-color: #9cdbf8;
+  color: #00529B;
+}
+.validation{
+  background-color: #fdbba3;
+  color: #D63301;
+}
+table{
+  border-collapse: collapse;
+}
+table th,td{
+  border: 0;
+  text-align: left;
+}
+table.table td,th{
+  border-bottom: 1px solid grey;
+}
+table.banded tr:nth-child(odd){
+  background-color: #08311e;
+  color: #ffffff;
+}
+table.banded tr:nth-child(even){
+  background-color:#ffffff;
+  color: #08311e;
+}
+table.banded tr:hover{
+  background-color: rgb(15, 92, 21);
+  color: #ffffff;
+}
+table.banded th{
+  background-color: rgb(28, 92, 34);
+  color: #ffffff;
+}
+.menu{
+  margin: 10px;
+  background-color: #08311e;
+  width: 150px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+}
+.menu ul{
+  list-style: none;
+  padding: 0;
+}
+.menu ul li a{
+  padding: 20px;
+  display: block;
+  border-bottom: 1px solid grey;  
+}
+.menu ul li a:hover{
+  background-color: rgb(15, 92, 21);
+}
+.menu ul li a.active{
+  background-color: rgb(15, 92, 21);
+}
+.menu ul li a{
+  color: #ffffff;
+}
+.mymodal{
+  position: fixed;
+  display: none;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  padding-top: 100px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.9);
+}
+.mymodal-content{
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  background-color: #ffffff;
+}
+.mymodal-footer{
+  border-top: 2px solid rgba(0,0,0,0.6);
+  background-color: #08311e;
+}
+.sort::after{
+  content:url(fa-sort);
+}
+
+/*
+responsive on mobile
+contact  us - name, email, number, message - missglobalafricainternational@gmail.com
+carousel - gallery, partners, team
+*/

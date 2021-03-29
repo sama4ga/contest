@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Draft</title>
+  <style>
+    #turn{
+      text-align: center;
+    }
+    #message{
+      text-align: center;
+    }
+    table{
+      border: 10px solid #502a2a;
+      margin: 30px auto;
+    }
+    td{
+      width: 50px;
+      height: 50px;
+      text-align: center;
+    }
+    button{
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      outline: none;
+    }
+    button.player1{
+      background-color: #ebb494;
+    }
+    button.player2{
+      background-color: #ac5337;
+    }
+    button.king{
+      background-image: radial-gradient(circle,#9c2e2e,#521717,#9c2e2e,#521717);
+    }
+    button:hover{
+      background-color: sandybrown;
+    }
+    button[disabled]{
+      background-color: #b6b1ad;
+    }
+    /* td.possible-move::before{
+      content: "o";
+    } */
+    td.possible-move{
+      background-color: rgb(66, 35, 35)!important;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="turn"></div>
+    <div id="message"></div>
+    <table>
+      <tr>
+        <td id="tile1" data-position="1"></td>
+        <td id="tile2" data-position="2"></td>
+        <td id="tile3" data-position="3"></td>
+        <td id="tile4" data-position="4"></td>
+        <td id="tile5" data-position="5"></td>
+        <td id="tile6" data-position="6"></td>
+        <td id="tile7" data-position="7"></td>
+        <td id="tile8" data-position="8"></td>
+        <td id="tile9" data-position="9"></td>
+        <td id="tile10" data-position="10"></td>
+      </tr>
+      <tr>
+        <td id="tile11" data-position="11"></td>
+        <td id="tile12" data-position="12"></td>
+        <td id="tile13" data-position="13"></td>
+        <td id="tile14" data-position="14"></td>
+        <td id="tile15" data-position="15"></td>
+        <td id="tile16" data-position="16"></td>
+        <td id="tile17" data-position="17"></td>
+        <td id="tile18" data-position="18"></td>
+        <td id="tile19" data-position="19"></td>
+        <td id="tile20" data-position="20"></td>
+      </tr>
+      <tr>
+        <td id="tile21" data-position="21"></td>
+        <td id="tile22" data-position="22"></td>
+        <td id="tile23" data-position="23"></td>
+        <td id="tile24" data-position="24"></td>
+        <td id="tile25" data-position="25"></td>
+        <td id="tile26" data-position="26"></td>
+        <td id="tile27" data-position="27"></td>
+        <td id="tile28" data-position="28"></td>
+        <td id="tile29" data-position="29"></td>
+        <td id="tile30" data-position="30"></td>
+      </tr>
+      <tr>
+        <td id="tile31" data-position="31"></td>
+        <td id="tile32" data-position="32"></td>
+        <td id="tile33" data-position="33"></td>
+        <td id="tile34" data-position="34"></td>
+        <td id="tile35" data-position="35"></td>
+        <td id="tile36" data-position="36"></td>
+        <td id="tile37" data-position="37"></td>
+        <td id="tile38" data-position="38"></td>
+        <td id="tile39" data-position="39"></td>
+        <td id="tile40" data-position="40"></td>
+      </tr>
+      <tr>
+        <td id="tile41" data-position="41"></td>
+        <td id="tile42" data-position="42"></td>
+        <td id="tile43" data-position="43"></td>
+        <td id="tile44" data-position="44"></td>
+        <td id="tile45" data-position="45"></td>
+        <td id="tile46" data-position="46"></td>
+        <td id="tile47" data-position="47"></td>
+        <td id="tile48" data-position="48"></td>
+        <td id="tile49" data-position="49"></td>
+        <td id="tile50" data-position="50"></td>
+      </tr>
+      <tr>
+        <td id="tile51" data-position="51"></td>
+        <td id="tile52" data-position="52"></td>
+        <td id="tile53" data-position="53"></td>
+        <td id="tile54" data-position="54"></td>
+        <td id="tile55" data-position="55"></td>
+        <td id="tile56" data-position="56"></td>
+        <td id="tile57" data-position="57"></td>
+        <td id="tile58" data-position="58"></td>
+        <td id="tile59" data-position="59"></td>
+        <td id="tile60" data-position="60"></td>
+      </tr>
+      <tr>
+        <td id="tile61" data-position="61"></td>
+        <td id="tile62" data-position="62"></td>
+        <td id="tile63" data-position="63"></td>
+        <td id="tile64" data-position="64"></td>
+        <td id="tile65" data-position="65"></td>
+        <td id="tile66" data-position="66"></td>
+        <td id="tile67" data-position="67"></td>
+        <td id="tile68" data-position="68"></td>
+        <td id="tile69" data-position="69"></td>
+        <td id="tile70" data-position="70"></td>
+      </tr>
+      <tr>
+        <td id="tile71" data-position="71"></td>
+        <td id="tile72" data-position="72"></td>
+        <td id="tile73" data-position="73"></td>
+        <td id="tile74" data-position="74"></td>
+        <td id="tile75" data-position="75"></td>
+        <td id="tile76" data-position="76"></td>
+        <td id="tile77" data-position="77"></td>
+        <td id="tile78" data-position="78"></td>
+        <td id="tile79" data-position="79"></td>
+        <td id="tile80" data-position="80"></td>
+      </tr>
+      <tr>
+        <td id="tile81" data-position="81"></td>
+        <td id="tile82" data-position="82"></td>
+        <td id="tile83" data-position="83"></td>
+        <td id="tile84" data-position="84"></td>
+        <td id="tile85" data-position="85"></td>
+        <td id="tile86" data-position="86"></td>
+        <td id="tile87" data-position="87"></td>
+        <td id="tile88" data-position="88"></td>
+        <td id="tile89" data-position="89"></td>
+        <td id="tile90" data-position="90"></td>
+      </tr>
+      <tr>
+        <td id="tile91" data-position="91"></td>
+        <td id="tile92" data-position="92"></td>
+        <td id="tile93" data-position="93"></td>
+        <td id="tile94" data-position="94"></td>
+        <td id="tile95" data-position="95"></td>
+        <td id="tile96" data-position="96"></td>
+        <td id="tile97" data-position="97"></td>
+        <td id="tile98" data-position="98"></td>
+        <td id="tile99" data-position="99"></td>
+        <td id="tile100" data-position="100"></td>
+      </tr>
+    </table>
+  </div>
+
+  
+  <script src="../Bootstrap/bootstrap-4.6.0-dist/js/jquery-3.51.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      
+      var player,cellsPerRow,numCells,forbiddenLeft,forbiddenRight,freeAdjacentCells,
+          canMove=false,moving = false,moved = false;
+      var message = $("#message");
+      var turn = $("#turn");
+      cellsPerRow = 10;
+      numCells = 100;
+
+      function  init() {
+        // initialize
+        btnType = "normal";
+        // forbidden movement for some buttons at the edges
+        forbiddenLeft = [1];
+        forbiddenRight = [10];
+        for (let i = 0; i < cellsPerRow-1; i++) {
+          forbiddenLeft.push(forbiddenLeft[i]+10);
+          forbiddenRight.push(forbiddenRight[i]+10);
+        }
+        // paint the board
+        $("tr:even").find("td:even").css("background-color","black");
+        $("tr:even").find("td:odd").css("background-color","white");
+        $("tr:odd").find("td:even").css("background-color","white");
+        $("tr:odd").find("td:odd").css("background-color","black");
+        
+
+        //place buttons on the board     
+        for (let i = 1; i <= cellsPerRow*3; i+=2) {
+          let btn = document.createElement("button");
+          $(btn).addClass("player1");
+          let text = "#tile"+i;
+          $(text).append(btn);
+        }
+
+        for (let i = numCells-(cellsPerRow*3)+1; i <= numCells; i+=2) {
+          let btn = document.createElement("button");
+          $(btn).addClass("player2");
+          let text = "#tile"+i;
+          $(text).append(btn);
+        }
+
+        // set player
+        player = Math.ceil(Math.random()*2);
+        $("td button.player2").attr("disabled",true);
+        $("td button.player1").attr("disabled",true);
+        switchPlayer();
+
+        play();
+      }
+
+      init();
+
+      // the main game
+      function play() {
+        let btn,btnType,cell,tile,adjacentCells;
+
+        $("button").on("click",function() {
+          freeAdjacentCells = [];
+          btn = this;
+          $("td").removeClass("possible-move");
+          $("td").off("click");
+
+          cell = $(this).parent().data("position");
+          btnType = getBtnType(btn);
+
+          // get adjacent cells
+          adjacentCells = getAdjacentCells(cell);
+          adjacentCells.forEach(function(value,index) {
+            tile = "#tile" + value;
+            if (value != undefined) {
+              if (checkForFreeCell(value)) {
+                // cell is free, add to list of free cells
+                freeAdjacentCells.push(value);
+                // mark adjacent cells for possible movement
+                markCellForMovement(value);
+                canMove = true;
+                // attach event listeners to the cells available for movement
+                
+                $(tile).on("click",function() {
+                  $(this).append(btn);
+                  moveButton(btn,this);
+                  switchPlayer();
+                });
+
+              }else{
+                //cell is not free, check if cell is occupied by enemy button
+                if (checkEnemyCell(value)){
+                  //cell is occupied by enemy cell. Begin search for possible checking
+
+                }
+              }              
+            }
+          });
+
+        });
+      }
+
+      function moveButton(btn,cell) {
+        $(cell).append(btn);
+        moved = true;
+        canMove = false;
+        $(cell).removeClass("possible-move");
+        $(cell).off("click");
+      }
+
+      function performCheck(btnChecked,btnChecking,cell) {
+        $(btnChecked).remove();
+        moveButton(btnChecking,cell);
+      }
+      
+      function switchPlayer() {
+        if (player == 2) {
+          $("td button.player2").attr("disabled",true);
+          $("td button.player1").attr("disabled",false);
+          player = 1;
+          turn.text("It is the turn of Player: " + player);
+          return;
+        }
+        $("td button.player1").attr("disabled",true);
+        $("td button.player2").attr("disabled",false);
+        player = 2
+        turn.text("It is the turn of Player: " + player);
+        return;
+      }
+
+      function getNextPlayer() {
+        return player == 1 ? 2 : 1;
+      }
+
+      function showPlayerTurn(player) {
+        turn.text("Player: " + player);
+      }
+
+      function getBtnType(btn) {
+        return $(btn).hasClass("king") ? "king" : "normal";
+      }
+
+      function getAdjacentCells(currentCell) {
+        let adjacentLeft,adjacentRight,freeCells;
+        if (player == 1) {
+          adjacentLeft = currentCell + cellsPerRow - 1;
+          adjacentRight = currentCell + cellsPerRow + 1;
+        }else{
+          adjacentLeft = currentCell - cellsPerRow - 1;
+          adjacentRight = currentCell - cellsPerRow + 1;
+        }
+
+        // check for border cells
+        if (forbiddenLeft.indexOf(currentCell) == -1 && forbiddenRight.indexOf(currentCell) == -1){
+          freeCells = [adjacentLeft,adjacentRight];
+        }else if (forbiddenLeft.indexOf(currentCell) == -1 && forbiddenRight.indexOf(currentCell) > -1) { // check for currentCellitions at the left edge of the board 
+          freeCells = [adjacentLeft];
+        }else if(forbiddenRight.indexOf(currentCell) == -1 && forbiddenLeft.indexOf(currentCell) > -1){ // check for positions at the right edge of the board
+          freeCells = [adjacentRight];          
+        }else{
+          
+        }
+        return freeCells;
+      }
+
+      function checkForFreeCell(cell) {
+        let id = "#tile" + cell;
+        return $(id).find("button")[0] == undefined; // returns true if there is no button in the cell
+      }
+
+      function markCellForMovement(cellId) {
+        let id = "#tile" + cellId;
+        $(id).addClass("possible-move");
+      }
+
+      function clearMarkingForovement(cellId) {
+        let id = "#tile" + cell;
+        $(id).removeClass("possible-move").off("click");
+      }
+
+      function checkEnemyCell(cell) {
+        let enemy = player == 1 ? 2 : 1;
+        let id = "#tile" + cell;
+        return $(id).find("button.player"+enemy)[0] == undefined; // returns true if cell is occupied by a button belonging to the other user
+      }
+    });
+
+    //logic to be used
+    //1.check if cells adjacent the active button is free
+    //2. if free, allow for possible movement of button to any of the cells
+    //3. if occupied, check whether it is occupied by a button belonging to the other player
+    //4. if false, stop
+    //5. if true, check if there are cells adjacent this one that could be used to check this one
+    //6. continue with 5 until no more checker cells are available 
+  </script>
+</body>
+</html>

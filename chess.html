@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess</title> 
+  <style>
+    #turn{
+      text-align: center;
+    }
+    #message{
+      text-align: center;
+    }
+    table{
+      border: 10px solid #502a2a;
+      margin: 30px auto;
+    }
+    td{
+      width: 50px;
+      height: 50px;
+      text-align: center;
+    }
+    button{
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      outline: none;
+    }
+    button.player1{
+      background-color: #ebb494;
+    }
+    button.player2{
+      background-color: #ac5337;
+    }
+    button.promoted{
+      background-image: radial-gradient(circle,#9c2e2e,#521717,#9c2e2e,#521717);
+    }
+    button:hover{
+      background-color: sandybrown;
+    }
+    button[disabled]{
+      background-color: #b6b1ad;
+    }
+    /* td.possible-move::before{
+      content: "o";
+    } */
+    td.possible-move{
+      background-color: rgb(66, 35, 35)!important;
+    }
+    td.possible-check{
+      background-color: rgb(66, 35, 35)!important;
+    }
+  </style> 
+</head>
+<body>
+  
+  <script src="../Bootstrap/bootstrap-4.6.0-dist/js/jquery-3.51.min.js"></script>
+  <script src="scripts/draught.js"></script>
+</body>
+</html>
