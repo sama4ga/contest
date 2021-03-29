@@ -73,10 +73,10 @@ function exportTableToCSV($table, filename) {
 }
 
 //$("#image-gallery img").on("mouseover",()=>{(this).fadeTo("slow",0.4)});
-$("#image-gallery img").on("mouseover",()=>{
+$("#image-gallery img").on("mouseover",function(){
   (this).animate({
     width: "+=100px",
     height: "+=100px",
     opacity: "0.5"
-  }, "slow");
+  }, 1000);
 });

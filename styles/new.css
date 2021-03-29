@@ -78,6 +78,8 @@ header{
 }
 #image-gallery div.col-2{
   padding: 0;
+  margin: unset 0!important;
+
 }
 
 #clockdiv{
@@ -100,10 +102,19 @@ header{
   background-color: #083a06;
   display: inline-block;
 }
+
+.mycard{  
+  box-shadow: 3px 3px 10px rgba(141, 139, 139, 0.1);
+  min-width:200px;
+  max-width:500px;
+  padding:20px;
+  margin:30px auto;
+  background-color: white;
+}
+
 footer{
-  bottom: 0;
   margin-top: 20px;
-  background-color: #052506;
+  background-color: #021303;
   color: #ffffff;
 }
 .text-green{
@@ -115,10 +126,6 @@ footer{
 section{
   margin: 20px 0;;
 }
-#image-gallery .col-sm-2{
-  margin: 0;
-  padding: 0;
-}
 .chat{
   position: fixed;
   bottom: 20px;
@@ -128,9 +135,35 @@ section{
   color: #ffffff;
   margin-top: 10px;
 }
-.image-gallery .col-sm-2{
-  margin: 0!important;
-  padding: 0!important;
+.error,.success,.warning,.info,.validation{
+  width: 100%;
+  margin: 10px;
+  padding: 10px;
+  border-left: 5px solid;
+}
+.error{
+  background-color: #fca4a4;
+  color: #D8000C;
+}
+.success{
+  background-color:#c7e78e;
+  color: #4F8A10;
+}
+.warning{
+  background-color: #f7e59e;
+  color: #9f6000;
+}
+.info{
+  background-color: #9cdbf8;
+  color: #00529B;
+}
+.validation{
+  background-color: #fdbba3;
+  color: #D63301;
+}
+.naira{
+  text-decoration: line-through double;
+  font-style: normal;
 }
 .input-bb{
   border:0;

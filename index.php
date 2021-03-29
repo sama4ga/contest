@@ -230,32 +230,32 @@ if ($result) {
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
               <div class="item__third">
-                <img src="images/constestant_1.jpg" alt="" class="d-block w-100" style="height: 100px;"/>
+                <img src="images/constestant_1.jpg" alt="" class="d-block w-100" style="height: 200px;"/>
               </div>
             </div>
             <div class="carousel-item">
               <div class="item__third">
-                <img src="images/contest.jpg" alt="" class="d-block w-100" style="height: 100px;"/>
+                <img src="images/contest.jpg" alt="" class="d-block w-100" style="height: 200px;"/>
               </div>
             </div>
             <div class="carousel-item">
               <div class="item__third">
-                <img src="images/Geraldine.jpg" alt="" class="d-block w-100" style="height: 100px;"/>
+                <img src="images/Geraldine.jpg" alt="" class="d-block w-100" style="height: 200px;"/>
               </div>
             </div>
             <div class="carousel-item">
               <div class="item__third">
-                <img src="images/pagent.jpg" alt="" class="d-block w-100" style="height: 100px;"/>
+                <img src="images/pagent.jpg" alt="" class="d-block w-100" style="height: 200px;"/>
               </div>
             </div>
             <div class="carousel-item">
               <div class="item__third">
-                <img src="images/primewalker.jpg" alt="" class="d-block w-100" style="height: 100px;"/>
+                <img src="images/primewalker.jpg" alt="" class="d-block w-100" style="height: 200px;"/>
               </div>
             </div>
             <div class="carousel-item">
               <div class="item__third">
-                <img src="images/samaservices.jpg" alt="" class="d-block w-100" style="height: 100px;"/>
+                <img src="images/samaservices.jpg" alt="" class="d-block w-100" style="height: 200px;"/>
               </div>
             </div>
           </div>

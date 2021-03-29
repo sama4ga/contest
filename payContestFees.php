@@ -7,7 +7,7 @@ include_once("header.php");
 $contestantId = $_SESSION['contestantId'];
 
 function customErrorHandler($errorevel, $errorMessage, $errorFile,$errorLine,$errorContext){
-  // error_log($errorMessage,0,"mauriceoscar58@gmail.com","From: webmaster@example.com");
+   error_log($errorMessage,0,"mauriceoscar58@gmail.com","From: webmaster@example.com");
 }
 
 //set_error_handler(customErrorHandler,E_ALL);
@@ -15,15 +15,18 @@ function customErrorHandler($errorevel, $errorMessage, $errorFile,$errorLine,$er
 
 ?>
 
-
+<div class="container-fluid text-center text-white">
 <section>
-  <div >Congratulations!!!</div>
+  <div>Congratulations!!!</div>
   <div>You are just a step away from completing the registration.</div>
   <div>Pay a non-refundable fee of <i class="naira">N</i>2,000</div>
-<form>
-  <button type="button" onClick="makePayment()" class="btn btn-md btn-outline-success">Pay</button>
-</form>
-  <script src="https://checkout.flutterwave.com/v3.js"></script>
+  <form>
+    <button type="button" onClick="makePayment()" class="btn btn-md btn-outline-success">Pay</button>
+  </form>
+</section>
+</div>
+  
+<script src="https://checkout.flutterwave.com/v3.js"></script>
 
 <script>
   function makePayment() {
@@ -52,14 +55,14 @@ function customErrorHandler($errorevel, $errorMessage, $errorFile,$errorLine,$er
         // close modal
       },
       customizations: {
-        title: "iss Global Africa",
+        title: "Miss Global Africa",
         description: "Registration fee",
         logo: "https://assets.piedpiper.com/logo.png",
       },
     });
   }
 </script>
-</section>
+
 
 
 <?php

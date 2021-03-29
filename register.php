@@ -31,10 +31,7 @@ date_default_timezone_set('Africa/Lagos');
     $facebookLink = mysqli_real_escape_string($con,$_POST['txtFacebookLink']);
     $instagramLink = mysqli_real_escape_string($con,$_POST['txtInstagramLink']);
     $twitterLink = mysqli_real_escape_string($con,$_POST['txtTwitterLink']);
-    $linkedInLink = mysqli_real_escape_string($con,$_POST['txtLinkedInLink']);
-    $telegramLink = mysqli_real_escape_string($con,$_POST['txtTelegramLink']);
-    $snapchatLink = mysqli_real_escape_string($con,$_POST['txtSnapchatLink']);
-
+    
     //perform file upload
     $accepted_formats = array("jpeg","jpg","png");
     $fileName = basename($file['name']);
@@ -72,7 +69,7 @@ date_default_timezone_set('Africa/Lagos');
         contestId,firstName,surname,email,phoneNumber,dob,category,countryId,`year`,locationId,
         facebookLink,twitterLink) 
         VALUES(?,?,?,?,?,?,?,?,?,?,?,?);");
-      $stmt->bind_param("sssssssssssssssss",$contestId,$firstName,$surname,$email,
+      $stmt->bind_param("ssssssssssss",$contestId,$firstName,$surname,$email,
         $phone,$dob,$category,$countryId,$year,$locationId,$facebookLink,$twitterLink);
       $stmt->execute();
     if ($stmt->errno) {
@@ -108,9 +105,10 @@ date_default_timezone_set('Africa/Lagos');
   }
 ?>
 
-<div class="my-3 center border">
+
+<div class="my-3 center mycard">
   <h2 class="text-muted text-center my-3">Register</h2>
-  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data" autocomplete="off"><!-- onsubmit="return validate(this);"-->
+  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post" enctype="multipart/form-data" autocomplete="off" class="form needs-validation"><!-- onsubmit="return validate(this);"-->
   <?php 
     if(!empty($msg)){
       echo "
@@ -125,18 +123,21 @@ date_default_timezone_set('Africa/Lagos');
     }
   ?>
   <div class="row">
-    <div class="mb-3 col-4">
+    <div class="mb-3 col-6">
       <label for="txtFirstName" class="form-label sr-only">First Name</label>
       <input type="text" class="form-control" placeholder="First name" id="txtFirstName" name="txtFirstName" required="required"/>
+      <div class="invalid-feedback">Please supply a first name to proceed</div>
     </div>
-    <div class="mb-3 col-4">
+    <div class="mb-3 col-6">
       <label for="txtLastName" class="form-label sr-only">Last Name</label>
       <input type="text" class="form-control" placeholder="Last name" id="txtLastName" name="txtLastName" required="required"/>
+      <div class="invalid-feedback">Please supply a last name to proceed</div>
     </div>
   </div>
     <div class="mb-3">
       <label for="txtEmail" class="form-label sr-only">Email</label>
       <input type="email" class="form-control" placeholder="email" id="txtEmail" name="txtEmail" required="required"/>
+      <div class="invalid-feedback">Please supply a valid email to proceed</div>
     </div>
     <!--<div class="mb-3">
       <label for="txtPassword" class="form-label sr-only">Password</label>
@@ -145,42 +146,48 @@ date_default_timezone_set('Africa/Lagos');
     <div class="mb-3">
       <label for="dtpDOB" class="form-label sr-only">Date of Birth</label>
       <input type="date" class="form-control" id="dtpDOB" name="dtpDOB" required="required"/>
+      <div class="invalid-feedback">Your date of birth is required</div>
     </div>
     <div class="mb-3">
       <label for="txtPhoneNumber" class="form-label sr-only">Phone Number (WhatsApp enabled)</label>
       <input type="tel" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" placeholder="Phone Number (WhatsApp enabled)" required="required"/>
+      <div class="invalid-feedback">Enter your phone number to proceed</div>
     </div>
     <div class="mb-3">
       <label for="btnPic" class="form-label sr-only">Picture</label>
       <input type="file" class="form-control" id="btnPic" name="btnPic" aria-describedby="fileSize" required="required" accept="Images|.jpg,.jpeg,.png"/>
       <div id="fileSize" style="color:red;font-size:small;">Maximum file size is 2Mb. Accepted formats are jpeg, jpg, and png </div>
+      <div class="invalid-feedback">Upload your picture to proceed</div>
     </div>
     <div class="mb-3">
       <label for="cmbCategory" class="form-label sr-only">Category</label>
-      <select class="form-select" id="cmbCategory" name="cmbCategory" required="required">
-        <option value="default">select category</option>
+      <select class="form-control" id="cmbCategory" name="cmbCategory" required="required">
+        <option selected disabled value="default">select category</option>
         <option value="pageantry">Miss Global Africa International Pageantry</option>
         <option value="tourFestival">Miss Global Africa International Tour Festival</option>
         <option value="talentShow">Miss Global Africa International Talent Show</option>
         <option value="foodFestival">Miss Global Africa International Food Festival</option>
         <option value="fashionShow">Miss Global Africa International Fashion Show</option>
       </select>
+      <div class="invalid-feedback">Select a contest to proceed</div>
     </div>
     <div class="mb-3">
       <label for="cmbCountry" class="form-label sr-only">Country</label>
-      <select class="form-select" id="cmbCountry" name="cmbCountry" required="required">
+      <select class="form-control" id="cmbCountry" name="cmbCountry" required="required">
       <?php include_once("getCountries.php"); ?>
       </select>
+      <div class="invalid-feedback">Select your country</div>
     </div>
     <div class="mb-3">
       <label for="cmbState" class="form-label sr-only">State</label>
-      <select class="form-select" id="cmbState" name="cmbState"></select>
+      <select class="form-control" id="cmbState" name="cmbState"></select>
     </div>
     <div class="mb-3">
       <label for="cmbLocation" class="form-label sr-only">Audition Location</label>
-      <select class="form-select" id="cmbLocation" name="cmbLocation" required="required">
+      <select class="form-control" id="cmbLocation" name="cmbLocation" required="required">
         <?php include_once("getLocations.php"); ?>
       </select>
+      <div class="invalid-feedback">Select an audition location to proceed</div>
     </div>
 
     <div class="mb-3" id="mediaLinks">
@@ -203,9 +210,9 @@ date_default_timezone_set('Africa/Lagos');
       <i class="fa fa-plus"></i>
     </a><span style="clear:both;"></span>-->
 
-    <div class="mb-3">
-      <input type="submit" class="form-control btn btn-md btn-success right" value="Register" id="btnRegister" name="btnRegister"/>
-      <a href='index.php' class='form-control btn btn-md btn-outline-success'>Back</a>
+    <div class="mb-3 btn-group justify-content-center g-3">
+      <input type="submit" class="btn btn-success right" value="Register" id="btnRegister" name="btnRegister"/>
+      <a href='index.php' class='btn btn-outline-success'>Back</a>
     </div>
   </form>
 
@@ -213,7 +220,6 @@ date_default_timezone_set('Africa/Lagos');
     Already registered? <a href="login.html">click here to login</a>
   </div>-->
 </div>
-
 <script src="../Bootstrap/bootstrap-4.6.0-dist/js/jquery-3.51.min.js"></script>
 <!-- <script type="text/html" id="mediaLinkBlock">
   <div class="mb-3">
@@ -235,9 +241,15 @@ date_default_timezone_set('Africa/Lagos');
     } */
     $("#cmbCountry").on("change",function() {
       let country = $(this).val();
-      $("#cmbState").load("getState.php?id="+country);
-    })
-  })
+      $("#cmbState").load("getStates.php?id="+country);
+      //$.post("getStae")
+    });
+
+    $("#btnRegister").click(function() {
+      $(this).disabled();
+    });
+
+  });
 </script>
 
 
