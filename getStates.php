@@ -1,7 +1,7 @@
 <?php
 require_once("connect.php");
 $countryId = $_REQUEST['id'];
-$result = $con->query("SELECT `stateId`,`state` from `states` WHERE `countryId`=$countryId");
+$result = $con->query("SELECT `stateId`,`state` from `state` WHERE `countryId`=$countryId");
 if ($result) {
   echo "<option selected disabled value='default'>select state</option>";
   if ($result->num_rows > 0) {

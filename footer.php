@@ -1,9 +1,9 @@
 
   </main>
 
-  <footer class="mt-4">
-    <div class="row p-4">
-      <div class="col-6">
+  <footer style="background-color: #273443; padding-top: 100px;" class="text-white">
+    <div class="row p-4"><!--#273443 #68897066 -->
+      <div class="col-6 text-left">
         <h4>Features of Miss Global Africa</h4>
         <ul class="navbar-nav">
           <li class="nav-item"><a href="">Pageantry</a></li>
@@ -31,13 +31,13 @@
         <a href="mailto:missglobalafrica@gmail.com" title="Email"><i class="fa fa-envelope"></i></a>
       </div>
     </div>
-    <div class="row">
+    <div class="row text-center p-4" style="background-color: #111b21;">
       <div class="col-sm-6">&copy;<?php echo date("Y"); ?>&nbsp;All Rights Reserved</div>
-      <div class="col-sm-6" style="position:absolute;right:10px;">Proudly designed by <a href="">samaservices</a></div>
+      <div class="col-sm-6">Proudly designed by <a href="">samaservices</a></div>
     </div>
   </footer>
   <script src="../Bootstrap/bootstrap-4.6.0-dist/js/jquery-3.51.min.js"></script>
-  <script src="../Bootstrap/bootstrap-4.6.0-dist/js/popperV.min.js"></script>
+  <!-- <script src="../Bootstrap/bootstrap-4.6.0-dist/js/popperV.min.js"></script> -->
   <script src="../Bootstrap/bootstrap-4.6.0-dist/js/bootstrap.min.js"></script>
   <script src="scripts/new.js"></script>
 </body>

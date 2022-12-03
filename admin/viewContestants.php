@@ -6,23 +6,15 @@ include_once("header.php");
 echo "<h1 class='text-center text-muted my-3'>List of contestants</h1>";
 
 if(isset($_REQUEST['id'])){
-  $contestId = $_REQUEST['id'];
-
   $result = $con->query("SELECT ct.cId,concat(firstName,' ',surname) AS `name`,
-    email,phoneNumber,dob,picture,category,country,`location`,
-    facebookLink,instagramLink,twitterLink,`year`
+    email,phoneNumber,dob,picture,country,`year`
     FROM `contestant` ct
-    JOIN country c ON c.countryId=ct.countryId
-    JOIN auditionLocation a ON a.locationId=ct.locationId
-    WHERE `contestId`=$contestId;");
+    JOIN country c ON c.countryId=ct.countryId;");
 }else{
   $result = $con->query("SELECT ct.cId,concat(firstName,', ',surname) AS `name`,
-    email,phoneNumber,dob,picture,category,country,`location`,
-    facebookLink,instagramLink,twitterLink,`year`
+    email,phoneNumber,dob,picture,country,`year`
     FROM `contestant` ct
-    JOIN country c ON c.countryId=ct.countryId
-    JOIN auditionLocation a ON a.locationId=ct.locationId
-    ;");
+    JOIN country c ON c.countryId=ct.countryId;");
 }
 
 if ($result) {
@@ -39,11 +31,8 @@ if ($result) {
                     <option value='2'>Email</option>
                     <option value='3'>Phone Number</option>
                     <option value='4'>Date of Birth</option>
-                    <option value='6'>Category</option>
                     <option value='7'>Country</option>
                     <option value=''>State</option>
-                    <option value='8'>Audition Location</option>
-                    <option value='9'>Year</option>
                   </select>
                 </div>
                 <div class='col-xs-6'>
@@ -85,33 +74,12 @@ if ($result) {
                 </span>
               </th>
               <th>Picture</th>
-              <th onclick=\"sortTable('list',5)\">
-                Category
-                <span class='pl-2 float-right'>
-                  <i class='fa fa-sort'></i>
-                </span>
-              </th>
               <th onclick=\"sortTable('list',6)\">
                 Country
                 <span class='pl-2 float-right'>
                   <i class='fa fa-sort'></i>
                 </span>
               </th>
-              <th onclick=\"sortTable('list',7)\">
-                Audition Location
-                <span class='pl-2 float-right'>
-                  <i class='fa fa-sort'></i>
-                </span>
-              </th>
-              <th onclick=\"sortTable('list',8)\">
-                Year
-                <span class='pl-2 float-right'>
-                  <i class='fa fa-sort'></i>
-                </span>
-              </th>
-              <th>Facebook</th>
-              <th>Instagram</th>
-              <th>Twitter</th>
             </thead>
             <tbody>";
     while ($row = $result->fetch_assoc()) {
@@ -123,14 +91,7 @@ if ($result) {
               <td>".$row['phoneNumber']."</td>
               <td>".$row['dob']."</td>
               <td><img src='../".$row['picture']."' alt='contestant_".$row['cId']."' width='75' height='50' /></td>
-              <td>".$row['category']."</td>
-              <td>".$row['country']."</td>
-              <td>".$row['location']."</td>
-              <td>".$row['year']."</td>
-              <td>".$row['facebookLink']."</td>
-              <td>".$row['instagramLink']."</td>
-              <td>".$row['twitterLink']."</td>
-              
+              <td>".$row['country']."</td>             
             </tr>";
     }
     echo "</tbody>

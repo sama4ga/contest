@@ -4,7 +4,7 @@ var errors = [];
 
 /**
  * @summary Function to validate form and its elements
- * @param {*} form The form to be validated
+ * @param {HTMLFormElement} form The form to be validated
  * @returns Boolean: True if form is valid and false if there are errors
  */
 function validate(form) {
@@ -32,7 +32,7 @@ function validate(form) {
       case "datetime":
         valDateTime(element);
         break;
-      case "datetme-local":
+      case "datetime-local":
         valDateTimeLocal(element);
         break;
       case "time":

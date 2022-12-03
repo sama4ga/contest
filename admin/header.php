@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="content-type" content="text/html" />
   <meta http-equiv="X-UA-Compatible" content="IE=7,8,9" />
@@ -34,6 +34,6 @@
   <link rel="stylesheet" href="../../Bootstrap/bootstrap-4.6.0-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../online_shopping/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="../styles/main.css">
-  <title>Contest-Admin</title>
+  <title>Miss Global Africa | Admin - <?php echo $page; ?></title>
 </head>
 <body>

@@ -31,7 +31,7 @@
 ?>
 
 
-<div class="my-3 center border">
+<div class="my-3 center mycard">
   <h2 class="text-muted text-center my-3">Partner/Sponsor Registration form</h2>
   <form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
   <?php 
@@ -82,6 +82,11 @@
   </form>
 </div>
 
+
 <?php
   include_once("footer.php");
-?>
+ 
+?> 
+<script>
+  document.getElementsByClassName("nav-item")[2].classList.add('active');
+</script>

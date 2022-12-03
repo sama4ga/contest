@@ -37,7 +37,7 @@
   <link rel="stylesheet" href="../../Bootstrap/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../online_shopping/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="../styles/main.css">
-  <title>Contest-Admin</title>
+  <title>Miss Global Africa | Admin - <?php echo $page; ?></title>
 </head>
 <body>
   <h1 class="text-center text-muted my-3">Admin Console</h1>
@@ -51,18 +51,8 @@
             </a>
           </li>
           <li>
-            <a href="createNewContest.php" target="display">
-              Create New Contest
-            </a>
-          </li>
-          <li>
-            <a href="viewContests.php" target="display">
-              Manage Contests
-            </a>
-          </li>
-          <li>
-            <a href="manageAuditionLocation.php" target="display">
-              Manage Audition Location
+            <a href="viewContestResult.php" target="display">
+              View Contestant Result
             </a>
           </li>
         </ul>

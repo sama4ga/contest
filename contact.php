@@ -18,16 +18,17 @@ if (isset($_POST['btnSend'])) {
     echo "<div class='error'>An error occurred while sending your message</div>";
   }else{
     echo "<div class='success'>Message successfully sent</div>"; 
+    mail("missglobalafricainternational@gmail.com","Contact from Site","$message","From: $email;Name:$name;Sent From: missglobalafrica.com site");
   }
   echo "<a href='javascript:history.back();' class='btn btn-md btn-success'>Back</a>";
   die();
 }
-//<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>
+//mailto:missglobalafricainternational@gmail.com
 ?>
 
-<div class="border">
+<div class="mycard">
   <h1 class="text-center text-muted my-4">CONTACT US</h1>
-  <form action="mailto:missglobalafricainternational@gmail.com" class="form" method="POST">
+  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" class="form" method="POST">
     <div class="form-group">
       <label for="txtName" class="control-label sr-only">Name</label>
       <input type="text" class="form-control" id="txtName" name="txtName" placeholder="Name" required />
@@ -54,3 +55,7 @@ if (isset($_POST['btnSend'])) {
 <<?php
 require_once("footer.php");
 ?>
+
+<script>
+  switchMenuItem(3);
+</script>
